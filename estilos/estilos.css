@@ -1,0 +1,196 @@
+/* Fonte fofinha geral */
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+
+body.login-body {
+    background-image: url('../views/img/dhoj5t2-c68e9aff-9ada-4101-9be9-316cbbb22486.gif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Comic Neue', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container do login */
+.login-container {
+    background-color: #9c355eb7;
+    border: 2px solid #ff99cc;
+    border-radius: 25px;
+    padding: 40px;
+    box-shadow: 0 10px 20px rgba(255, 153, 204, 0.3);
+    width: 500px;
+    text-align: center;
+    position: relative;
+}
+
+/* Título */
+.login-title {
+    color: #f0cddf;
+    font-size: 28px;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 2px #fff;
+}
+
+/* Inputs */
+.login-input {
+    width: 80%;
+    padding: 15px 15px;
+    margin: 10px 0;
+    border: 2px solid #ff99cc;
+    border-radius: 20px;
+    background-color: #ffe6f2;
+    font-size: 16px;
+    color: #ff3399;
+    outline: none;
+    transition: 0.3s;
+}
+
+.login-input:focus {
+    border-color: #ff66b2;
+    box-shadow: 0 0 10px rgba(255, 102, 178, 0.5);
+    background-color: #fff0f6;
+}
+
+/* Botão */
+.login-button {
+    width: 70%;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: #ff99cc;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-button:hover {
+    background-color: #ff66b2;
+    box-shadow: 0 5px 15px rgba(255, 102, 178, 0.4);
+}
+
+/* Mensagem de erro/sucesso */
+.login-mensagem {
+    margin-top: 15px;
+    font-weight: bold;
+    min-height: 24px;
+}
+
+/* Pequenos detalhes Hello Kitty */
+.login-container::before {
+    content: '💖';
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    font-size: 36px;
+}
+
+.login-container::after {
+    content: '🎀';
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    font-size: 36px;
+}
+
+.content-dash {
+    position: fixed;
+    top: 0;
+    left: 400px;
+    width: 500px;
+    height: 100vh;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.content-dash {
+    position: fixed;
+    top: 0;
+    left: 400px;
+    width: 500px;
+    height: 100vh;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.content-dash h1 {
+    font-size: 36px;
+    color: #ffffff;
+}
+
+.content-dash p {
+    font-size: 18px;
+    color: #000000;
+}
+
+/* Estilo da tabela princesa */
+.tabela-princesa {
+    position: fixed;
+    width: 1600px;
+    left: 430px;
+    top: 250px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff0f5;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Trebuchet MS', sans-serif;
+    text-align: center;
+}
+
+.tabela-princesa h2 {
+    color: #ff69b4;
+    /* rosa princesa */
+    margin-bottom: 20px;
+}
+
+.tabela-princesa table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela-princesa thead th {
+    background-color: #ffb6c1;
+    /* rosa claro */
+    color: #800080;
+    /* roxo escuro */
+    padding: 12px;
+    border: 1px solid #ff69b4;
+    border-radius: 10px 10px 0 0;
+}
+
+.tabela-princesa tbody tr {
+    background-color: #fff0f5;
+    transition: background 0.3s;
+}
+
+.tabela-princesa tbody tr:hover {
+    background-color: #ffe4f0;
+}
+
+.tabela-princesa tbody td {
+    padding: 10px;
+    border: 1px solid #ffb6c1;
+    border-radius: 5px;
+}
+
+.tabela-princesa tbody td a {
+    text-decoration: none;
+    color: #ff1493;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.tabela-princesa tbody td a:hover {
+    color: #c71585;
+}
+
+.tabela-princesa tbody td:nth-child(5) {
+    font-weight: bold;
+    color: #ff69b4;
+}

@@ -1,27 +1,5 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Tempo de geração: 22/05/2025 às 15:00
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Banco de dados: `biblioteca`
---
-
--- --------------------------------------------------------
+CREATE DATABASE IF NOT EXISTS `biblioteca` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `biblioteca`;
 
 --
 -- Estrutura para tabela `aluno`
@@ -29,10 +7,37 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `aluno` (
   `id` int(11) NOT NULL,
-  `nome` varchar(40) NOT NULL,
-  `serie` varchar(2) NOT NULL,
-  `email` varchar(50) NOT NULL
+  `nome` varchar(90) NOT NULL,
+  `serie` varchar(12) NOT NULL,
+  `email` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `aluno`
+--
+
+INSERT INTO `aluno` (`id`, `nome`, `serie`, `email`) VALUES
+(1, 'Aluno', '1º Ano EM A', 'aluno@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `anotacoes`
+--
+
+CREATE TABLE `anotacoes` (
+  `id` int(11) NOT NULL,
+  `id_professor` int(11) NOT NULL,
+  `texto` text NOT NULL,
+  `data` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `anotacoes`
+--
+
+INSERT INTO `anotacoes` (`id`, `id_professor`, `texto`, `data`) VALUES
+(1, 1, 'jogo', '2025-08-21 15:19:40');
 
 -- --------------------------------------------------------
 
@@ -46,7 +51,8 @@ CREATE TABLE `emprestimo` (
   `id_professor` int(11) NOT NULL,
   `id_livro` int(11) NOT NULL,
   `data_emprestimo` date NOT NULL,
-  `data_devolucao` date NOT NULL
+  `data_devolucao` date NOT NULL,
+  `status` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -57,10 +63,20 @@ CREATE TABLE `emprestimo` (
 
 CREATE TABLE `livro` (
   `id` int(11) NOT NULL,
-  `nome_livro` varchar(40) NOT NULL,
-  `nome_autor` varchar(40) NOT NULL,
-  `isbn` varchar(255) NOT NULL
+  `nome_livro` varchar(190) NOT NULL,
+  `nome_autor` varchar(130) NOT NULL,
+  `isbn` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `livro`
+--
+
+INSERT INTO `livro` (`id`, `nome_livro`, `nome_autor`, `isbn`) VALUES
+(1, 'Memórias da Rua do Ouvidor', 'Joaquim Manuel de Macedo', ''),
+(2, 'trev', 'zcdasc', ''),
+(3, 'Curso de Direito Penal Brasileiro - Parte Geral', 'Luiz Regis Prado', '9786559596775'),
+(4, 'The Career and Legend of Vasco Da Gama', 'Sanjay Subrahmanyam', '0521646294');
 
 -- --------------------------------------------------------
 
@@ -70,10 +86,10 @@ CREATE TABLE `livro` (
 
 CREATE TABLE `professor` (
   `id` int(11) NOT NULL,
-  `nome` varchar(40) NOT NULL,
-  `cpf` varchar(11) NOT NULL,
+  `nome` varchar(90) NOT NULL,
+  `cpf` char(11) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `senha` varchar(16) NOT NULL
+  `senha` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -81,10 +97,7 @@ CREATE TABLE `professor` (
 --
 
 INSERT INTO `professor` (`id`, `nome`, `cpf`, `email`, `senha`) VALUES
-(1, 'Ana Paula Silva', '12345678901', 'ana.silva@escola.edu.br', 'senha1234'),
-(2, 'Carlos Henrique Lima', '23456789012', 'carlos.lima@escola.edu.br', 'prof2025ch'),
-(3, 'Mariana Costa', '34567890123', 'mariana.costa@escola.edu.br', 'mar123456'),
-(4, 'João Roberto Almeida', '45678901234', 'joao.almeida@escola.edu.br', 'joao2025abc');
+(1, 'Professor', '00000000000', 'professor@email.com', '$2y$10$9wsKRk73Ak7JUVY88kKfM.fXP1c5t9aMP/o2J3IxJ/AsaVrCEpjZq');
 
 --
 -- Índices para tabelas despejadas
@@ -94,16 +107,24 @@ INSERT INTO `professor` (`id`, `nome`, `cpf`, `email`, `senha`) VALUES
 -- Índices de tabela `aluno`
 --
 ALTER TABLE `aluno`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Índices de tabela `anotacoes`
+--
+ALTER TABLE `anotacoes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_anotacao_professor` (`id_professor`);
 
 --
 -- Índices de tabela `emprestimo`
 --
 ALTER TABLE `emprestimo`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_aluno` (`id_aluno`),
-  ADD KEY `id_professor` (`id_professor`),
-  ADD KEY `id_livro` (`id_livro`);
+  ADD KEY `fk_emprestimo_aluno` (`id_aluno`),
+  ADD KEY `fk_emprestimo_professor` (`id_professor`),
+  ADD KEY `fk_emprestimo_livro` (`id_livro`);
 
 --
 -- Índices de tabela `livro`
@@ -115,7 +136,9 @@ ALTER TABLE `livro`
 -- Índices de tabela `professor`
 --
 ALTER TABLE `professor`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `cpf` (`cpf`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT para tabelas despejadas
@@ -125,39 +148,46 @@ ALTER TABLE `professor`
 -- AUTO_INCREMENT de tabela `aluno`
 --
 ALTER TABLE `aluno`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `anotacoes`
+--
+ALTER TABLE `anotacoes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `emprestimo`
 --
 ALTER TABLE `emprestimo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `livro`
 --
 ALTER TABLE `livro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `professor`
 --
 ALTER TABLE `professor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restrições para tabelas despejadas
 --
 
 --
+-- Restrições para tabelas `anotacoes`
+--
+ALTER TABLE `anotacoes`
+  ADD CONSTRAINT `fk_anotacao_professor` FOREIGN KEY (`id_professor`) REFERENCES `professor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Restrições para tabelas `emprestimo`
 --
 ALTER TABLE `emprestimo`
-  ADD CONSTRAINT `emprestimo_ibfk_1` FOREIGN KEY (`id_aluno`) REFERENCES `aluno` (`id`),
-  ADD CONSTRAINT `emprestimo_ibfk_2` FOREIGN KEY (`id_professor`) REFERENCES `professor` (`id`),
-  ADD CONSTRAINT `emprestimo_ibfk_3` FOREIGN KEY (`id_livro`) REFERENCES `livro` (`id`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+  ADD CONSTRAINT `fk_emprestimo_aluno` FOREIGN KEY (`id_aluno`) REFERENCES `aluno` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_emprestimo_livro` FOREIGN KEY (`id_livro`) REFERENCES `livro` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_emprestimo_professor` FOREIGN KEY (`id_professor`) REFERENCES `professor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

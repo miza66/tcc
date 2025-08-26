@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Biblioteca</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos/estilos.css">
+</head>
+
+<body class="login-body">
+    <div class="login-container">
+        <h2 class="login-title">Login Biblioteca</h2>
+        <form id="login-form" class="login-form">
+            <input type="text" id="login-cpf" class="login-input" name="cpf" placeholder="CPF" maxlength="14" required>
+            <input type="password" id="login-senha" class="login-input" name="senha" placeholder="Senha" maxlength="15" required>
+            <button type="submit" class="login-button">Entrar</button>
+        </form>
+        <div id="login-mensagem" class="login-mensagem"></div>
+    </div>
+
+    <script>
+        // Máscara para CPF
+        document.getElementById("login-cpf").addEventListener("input", function(e) {
+            let value = e.target.value.replace(/\D/g, "");
+            if (value.length > 11) value = value.slice(0, 11);
+
+            let cpfFormatado = value;
+            if (value.length > 3) cpfFormatado = value.slice(0, 3) + '.' + value.slice(3);
+            if (value.length > 6) cpfFormatado = cpfFormatado.slice(0, 7) + '.' + cpfFormatado.slice(7);
+            if (value.length > 9) cpfFormatado = cpfFormatado.slice(0, 11) + '-' + cpfFormatado.slice(11);
+
+            e.target.value = cpfFormatado;
+        });
+
+        // Envia dados para login.php via fetch
+        document.getElementById("login-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const cpf = document.getElementById("login-cpf").value.replace(/\D/g, "");
+            const senha = document.getElementById("login-senha").value;
+
+            fetch("views/login.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: "cpf=" + encodeURIComponent(cpf) + "&senha=" + encodeURIComponent(senha)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    const mensagem = document.getElementById("login-mensagem");
+                    if (data.status === "sucesso") {
+                        mensagem.style.color = "green";
+                        mensagem.textContent = data.mensagem;
+                        setTimeout(() => {
+                            window.location.href = "dashboard.php";
+                        }, 1000);
+                    } else {
+                        mensagem.style.color = "red";
+                        mensagem.textContent = data.mensagem;
+                    }
+                })
+                .catch(() => {
+                    const mensagem = document.getElementById("login-mensagem");
+                    mensagem.style.color = "red";
+                    mensagem.textContent = "Erro na requisição.";
+                });
+        });
+    </script>
+</body>
+
+</html>
