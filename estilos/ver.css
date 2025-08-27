@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+body {
+    background-color: #fff0f5;
+    font-family: 'Comic Neue', cursive;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.bl-tab-container {
+    background: linear-gradient(to bottom right, #ffffff, #fff0f5);
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 900px;
+    margin: 200px auto;
+    box-shadow: 0 10px 20px rgba(255, 182, 193, 0.3);
+    border: 3px solid #ffb6c1;
+}
+
+/* Título */
+.bl-tab-title {
+    font-family: 'Comico Neue', cursive;
+    font-size: 28px;
+    color: #ff69b4;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Tabela */
+.bl-tab-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #ffb6c1;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+/* Cabeçalho */
+.bl-tab-head-cell {
+    background: #ffe4ec;
+    color: #ff1493;
+    padding: 12px;
+    border: 1px solid #ffb6c1;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Linhas e células */
+.bl-tab-body-cell {
+    padding: 10px;
+    border: 1px solid #ffb6c1;
+    text-align: center;
+    color: #7d3a5e;
+}
+
+/* Linhas alternadas */
+.bl-tab-body-row:nth-child(even) {
+    background-color: #fff7fa;
+}
+
+/* Hover fofinho */
+.bl-tab-body-row:hover {
+    background-color: #ffe4ec;
+    transition: 0.3s;
+}

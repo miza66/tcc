@@ -1,0 +1,99 @@
+/* Fonte delicada, estilo fofinho */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+body {
+    background-color: #fff0f5;
+    font-family: 'Comic Neue', cursive;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container geral */
+.bl-cad-container {
+    background: linear-gradient(to bottom right, #ffe6f0, #fff0f5);
+    border-radius: 20px;
+    padding: 30px 40px;
+    max-width: 500px;
+    margin: 170px auto;
+    box-shadow: 0 10px 20px rgba(255, 182, 193, 0.3);
+    border: 3px solid #ffb6c1;
+}
+
+/* Título fofinho */
+.bl-cad-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 32px;
+    color: #ff69b4;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Mensagem */
+.bl-cad-message {
+    background-color: #fff0f5;
+    color: #ff1493;
+    border: 2px solid #ffb6c1;
+    border-radius: 15px;
+    padding: 10px 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Formulário */
+.bl-cad-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Grupos de input */
+.bl-cad-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels */
+.bl-cad-label {
+    font-weight: bold;
+    color: #ff69b4;
+    margin-bottom: 5px;
+}
+
+/* Inputs e selects */
+.bl-cad-input {
+    padding: 10px 12px;
+    border-radius: 15px;
+    border: 2px solid #ffb6c1;
+    outline: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.bl-cad-input:focus {
+    border-color: #ff69b4;
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+}
+
+/* Botão fofinho */
+.bl-cad-btn {
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Pacifico', cursive;
+}
+
+.bl-cad-btn:hover {
+    background-color: #ff1493;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+}
+
+/* Estilo dos selects dropdown */
+.bl-cad-input option {
+    padding: 8px;
+}

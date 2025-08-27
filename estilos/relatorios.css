@@ -1,0 +1,132 @@
+/* Fonte fofinha geral */
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+
+body {
+    font-family: 'Comic Neue', cursive;
+    margin: 0;
+    padding: 0;
+    background-color: #e05eaf;
+}
+
+/* Conteúdo principal */
+.relatorios-main-content {
+    margin-right: 420px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+
+/* Cada gráfico */
+.relatorios-chart-container {
+    width: 100%;
+    max-width: 500px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.relatorios-chart-container:hover {
+    transform: translateY(-5px);
+}
+
+.relatorios-chart-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+/* Sidebar fixa à direita */
+.relatorios-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 100vh;
+    background: url('../views/img/7a6a02070dcbdd043a1cded9b4ca12a5.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.relatorios-sidebar-title {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #ffffff;
+}
+
+/* Notas */
+.relatorios-note {
+    border-left: 4px solid #3498db;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    background-color: #fdfdfd;
+    padding: 10px 15px;
+    border-radius: 6px;
+}
+
+.relatorios-note-author {
+    color: #2980b9;
+    font-weight: bold;
+}
+
+.relatorios-note-date {
+    font-size: 0.85rem;
+    color: #7f8c8d;
+}
+
+.relatorios-note-text {
+    margin-top: 5px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* Nenhuma nota */
+.relatorios-no-notes {
+    text-align: center;
+    font-style: italic;
+    color: #95a5a6;
+}
+
+.relatorios-sidebar-footer {
+    position: absolute;
+    left: 0;
+    bottom: 20px;
+    width: 100%;
+    padding: 40px 0;
+    height: 30px;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.relatorios-add-note-button {
+    padding: 12px 25px;
+    background-color: #ff41a0;
+    color: #fff;
+    width: 80%;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.relatorios-add-note-button:hover {
+    background-color: #9707aa;
+}
+
+/* Layout flex com sidebar à direita */
+.pagina-header {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 20px;
+}

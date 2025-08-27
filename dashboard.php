@@ -28,10 +28,11 @@ $sql = "
 
 $result = $conn->query($sql);
 
-// VERIFICA SE A CONSULTA FUNCIONOU
 if (!$result) {
     die("Erro na consulta: " . $conn->error);
 }
+
+$hoje = date('Y-m-d'); // Data de hoje para status
 ?>
 
 <!DOCTYPE html>
@@ -47,49 +48,95 @@ if (!$result) {
 <body>
     <?php include_once("includes/header.php"); ?>
 
-    <div class="content-dash">
-        <h1 class="bem-vindo">Bem-vindo, <?php echo htmlspecialchars($primeiro_nome); ?>!</h1>
-        <p>Este é o painel da biblioteca. Use o menu ao lado para navegar.</p>
+    <div class="my-header body">
+        <div class="content-dash">
+            <h1 class="bem-vindo">Bem-vindo, <?php echo htmlspecialchars($primeiro_nome); ?>!</h1>
+        </div>
+
+        <div class="tabela-princesa">
+            <h2>Empréstimos Registrados</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aluno</th>
+                        <th>Livro</th>
+                        <th>Empréstimo</th>
+                        <th>Devolução</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if ($result->num_rows > 0): ?>
+                        <?php while ($row = $result->fetch_assoc()): ?>
+                            <?php
+                            // Define o status exibido baseado na data e no status real
+                            if ($row['status'] == 2) {
+                                $status_texto = "Devolvido";
+                            } else {
+                                $status_texto = ($hoje > $row['data_devolucao']) ? "Pendente" : "Em andamento";
+                            }
+                            ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($row['aluno_nome']); ?></td>
+                                <td><?php echo htmlspecialchars($row['livro_nome']); ?></td>
+                                <td><?php echo htmlspecialchars($row['data_emprestimo']); ?></td>
+                                <td><?php echo htmlspecialchars($row['data_devolucao']); ?></td>
+                                <td><?php echo $status_texto; ?></td>
+                                <td>
+                                    <?php if ($row['status'] != 2): ?>
+                                        <a href="javascript:void(0);" style="color: blue; text-decoration: none;" onclick="devolverEmprestimo(<?php echo $row['id']; ?>, this)">Devolver</a> |
+                                    <?php else: ?>
+                                        <a href="javascript:void(0);" style="color: blue; text-decoration: none;" onclick="cancelarDevolucao(<?php echo $row['id']; ?>, this)">Cancelar</a> |
+                                    <?php endif; ?>
+                                    <a href="gestao/emprestimos/excluir_emprestimo.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Tem certeza que deseja excluir este empréstimo?');">Excluir</a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="6">Nenhum empréstimo registrado.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <div class="tabela-princesa">
-        <h2>Empréstimos Registrados</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Aluno</th>
-                    <th>Livro</th>
-                    <th>Empréstimo</th>
-                    <th>Devolução</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if ($result->num_rows > 0): ?>
-                    <?php while ($row = $result->fetch_assoc()): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($row['aluno_nome']); ?></td>
-                            <td><?php echo htmlspecialchars($row['livro_nome']); ?></td>
-                            <td><?php echo htmlspecialchars($row['data_emprestimo']); ?></td>
-                            <td><?php echo htmlspecialchars($row['data_devolucao']); ?></td>
-                            <td><?php echo ($row['status'] == 1) ? 'Devolvido' : 'Pendente'; ?></td>
-                            <td>
-                                <?php if ($row['status'] == 0): ?>
-                                    <a href="devolver_emprestimo.php?id=<?php echo $row['id']; ?>">Devolver</a> |
-                                <?php endif; ?>
-                                <a href="excluir_emprestimo.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Tem certeza que deseja excluir este empréstimo?');">Excluir</a>
-                            </td>
-                        </tr>
-                    <?php endwhile; ?>
-                <?php else: ?>
-                    <tr>
-                        <td colspan="6">Nenhum empréstimo registrado.</td>
-                    </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
-    </div>
+    <script>
+        function devolverEmprestimo(id, botao) {
+            fetch("gestao/emprestimos/devolver_emprestimo.php?id=" + id)
+                .then(res => res.text())
+                .then(res => {
+                    if (res === "ok") {
+                        botao.innerText = "Cancelar";
+                        botao.setAttribute("onclick", `cancelarDevolucao(${id}, this)`);
+                        botao.closest("tr").querySelector("td:nth-child(5)").innerText = "Devolvido";
+                    } else {
+                        alert("Erro ao devolver!");
+                    }
+                });
+        }
+
+        function cancelarDevolucao(id, botao) {
+            fetch("gestao/emprestimos/cancelar_devolucao.php?id=" + id)
+                .then(res => res.text())
+                .then(res => {
+                    if (res === "ok") {
+                        let dataDevolucao = botao.closest("tr").querySelector("td:nth-child(4)").innerText;
+                        let hoje = new Date().toISOString().split("T")[0];
+
+                        let status = (hoje > dataDevolucao) ? "Pendente" : "Em andamento";
+                        botao.closest("tr").querySelector("td:nth-child(5)").innerText = status;
+
+                        botao.innerText = "Devolver";
+                        botao.setAttribute("onclick", `devolverEmprestimo(${id}, this)`);
+                    } else {
+                        alert("Erro ao cancelar!");
+                    }
+                });
+        }
+    </script>
 
 </body>
 

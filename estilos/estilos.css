@@ -1,6 +1,14 @@
 /* Fonte fofinha geral */
 @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
 
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Comic Neue', cursive;
+    background-color: #e76f97;
+}
+
 body.login-body {
     background-image: url('../views/img/dhoj5t2-c68e9aff-9ada-4101-9be9-316cbbb22486.gif');
     background-size: cover;
@@ -103,18 +111,7 @@ body.login-body {
     top: 0;
     left: 400px;
     width: 500px;
-    height: 100vh;
-    padding: 20px;
-    overflow-y: auto;
-}
-
-.content-dash {
-    position: fixed;
-    top: 0;
-    left: 400px;
-    width: 500px;
-    height: 100vh;
-    padding: 20px;
+    padding: 3px;
     overflow-y: auto;
 }
 
@@ -131,7 +128,7 @@ body.login-body {
 /* Estilo da tabela princesa */
 .tabela-princesa {
     position: fixed;
-    width: 1600px;
+    width: 73%;
     left: 430px;
     top: 250px;
     margin: 40px auto;
