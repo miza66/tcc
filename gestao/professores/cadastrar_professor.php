@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['professor_id'])) {
+    header('Location: ../../index.html');
+    exit;
+}
+
 include '../../config/database.php'; // define $conn como mysqli_connect()
 
 $mensagem = '';

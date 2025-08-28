@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['professor_id'])) {
+    header('Location: ../../index.html');
+    exit;
+}
+
 // Conexão com o banco
 require_once("../../config/database.php");
 

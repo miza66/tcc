@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['professor_id'])) {
+    header('Location: ../../index.html');
+    exit;
+}
+
 require_once __DIR__ . '/../../config/database.php'; // ajuste conforme seu caminho real
 
 // Função para buscar livros na API do Google Books
