@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login - Biblioteca</title>
+    <link rel="icon" href="views/img/hello_kitty_PNG22.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilos/estilos.css">
 </head>
@@ -40,7 +41,7 @@
             const cpf = document.getElementById("login-cpf").value.replace(/\D/g, "");
             const senha = document.getElementById("login-senha").value;
 
-            fetch("views/login.php", {
+            fetch("includes/login.php", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"

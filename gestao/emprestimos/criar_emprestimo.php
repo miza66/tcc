@@ -41,6 +41,7 @@ $livros = mysqli_query($conn, "SELECT id, nome_livro FROM livro");
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="../../views/img/hello_kitty_PNG22.png" type="image/x-icon">
     <title>Criar Empréstimo</title>
     <link rel="stylesheet" href="../../estilos/cadastro.css">
 </head>

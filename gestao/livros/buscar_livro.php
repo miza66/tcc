@@ -94,6 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="../../views/img/hello_kitty_PNG22.png" type="image/x-icon">
     <title>Buscar Livros</title>
     <link rel="stylesheet" href="../../estilos/livrosbusca.css">
 </head>

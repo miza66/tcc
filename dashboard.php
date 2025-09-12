@@ -40,6 +40,7 @@ $hoje = date('Y-m-d'); // Data de hoje para status
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="views/img/hello_kitty_PNG22.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel da Biblioteca</title>
     <link rel="stylesheet" href="estilos/estilos.css">

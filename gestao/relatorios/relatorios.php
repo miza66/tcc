@@ -60,6 +60,7 @@ $conn->close();
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="../../views/img/hello_kitty_PNG22.png" type="image/x-icon">
     <title>Relatórios de Leitura</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="../../estilos/relatorios.css">

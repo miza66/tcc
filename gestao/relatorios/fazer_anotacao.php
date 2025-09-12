@@ -47,6 +47,7 @@ $conn->close();
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="../../views/img/hello_kitty_PNG22.png" type="image/x-icon">
     <title>Adicionar Anotação</title>
     <link rel="stylesheet" href="../../estilos/relatorios.css">
     <style>
