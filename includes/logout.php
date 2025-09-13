@@ -23,6 +23,6 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Redireciona para a página de login ou home
-header("Location: ../index.html");
+header("Location: ../");
 exit;
 ?>
