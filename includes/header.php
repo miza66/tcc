@@ -89,7 +89,7 @@
                 <li class="my-header__menu-item"><a href="/tcc/dashboard.php">Página Inicial</a></li>
                 <li class="my-header__menu-item"><a href="/tcc/gestao/emprestimos/criar_emprestimo.php">Criar Empréstimo</a></li>
                 <li class="my-header__menu-item"><a href="/tcc/gestao/livros/buscar_livro.php">Buscar Livros</a></li>
-                <li class="my-header__menu-item"><a href="/tcc/gestao/alunos/cadastrar_aluno.php">Cadastrar Alunos</a></li>
+                <li class="my-header__menu-item"><a href="/tcc/gestao/alunos/cadastrar_aluno.php">Cadastrar Aluno</a></li>
                 <li class="my-header__menu-item"><a href="/tcc/gestao/alunos/ver_alunos.php">Ver Alunos</a></li>
                 <li class="my-header__menu-item"><a href="/tcc/gestao/professores/cadastrar_professor.php">Cadastrar Professor</a></li>
                 <li class="my-header__menu-item"><a href="/tcc/gestao/professores/ver_professores.php">Ver Professores</a></li>

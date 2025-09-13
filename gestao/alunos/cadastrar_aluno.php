@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="bl-cad-form-group">
                         <label class="bl-cad-label">Sala:</label>
-                        <input class="bl-cad-input" type="text" name="sala" placeholder="Ex: A, G, Z" required>
+                        <input class="bl-cad-input" type="text" name="sala" maxlength="1" style="text-transform: uppercase" placeholder="Ex: A, G, Z" required>
                     </div>
                 </div>
 

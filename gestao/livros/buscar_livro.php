@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <input type="hidden" name="nome_livro" value="<?= htmlspecialchars($livro['nome_livro']) ?>">
                                 <input type="hidden" name="nome_autor" value="<?= htmlspecialchars($livro['nome_autor']) ?>">
                                 <input type="hidden" name="isbn" value="<?= htmlspecialchars($livro['isbn']) ?>">
-                                <button class="bl-botao-salvar" type="submit" name="salvar">Salvar no banco</button>
+                                <button class="bl-botao-salvar" type="submit" name="salvar">Cadastrar</button>
                             </form>
                         </div>
                     </li>
