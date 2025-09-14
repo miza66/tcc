@@ -13,9 +13,6 @@ CREATE TABLE `aluno` (
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `aluno` (`nome`, `serie`, `email`) VALUES
-('Aluno', '1º Ano EM A', 'aluno@gmail.com');
-
 -- --------------------------------------------------------
 -- Tabela `professor`
 -- --------------------------------------------------------
