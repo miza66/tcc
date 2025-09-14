@@ -28,7 +28,7 @@ CREATE TABLE `professor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `professor` (`nome`, `cpf`, `email`, `senha`) VALUES
-('Professor', '00000000000', 'professor@email.com', '$2y$10$9wsKRk73Ak7JUVY88kKfM.fXP1c5t9aMP/o2J3IxJ/AsaVrCEpjZq');
+('Professor(a)', '00000000000', 'professor@email.com', '$2y$10$9wsKRk73Ak7JUVY88kKfM.fXP1c5t9aMP/o2J3IxJ/AsaVrCEpjZq');
 
 -- --------------------------------------------------------
 -- Tabela `livro`
@@ -59,9 +59,6 @@ CREATE TABLE `anotacoes` (
   KEY `fk_anotacao_professor` (`id_professor`),
   CONSTRAINT `fk_anotacao_professor` FOREIGN KEY (`id_professor`) REFERENCES `professor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-INSERT INTO `anotacoes` (`id_professor`, `texto`, `data`) VALUES
-(1, 'jogo', '2025-08-21 15:19:40');
 
 -- --------------------------------------------------------
 -- Tabela `emprestimo`
